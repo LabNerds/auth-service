@@ -1,4 +1,4 @@
-import { ExampleEntity } from 'src/example/example.entity';
+import { ExampleEntity } from 'src/example/entity/example.entity';
 
 export const records: ExampleEntity[] = [
   {

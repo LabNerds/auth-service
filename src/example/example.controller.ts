@@ -7,10 +7,10 @@ import {
   Param,
   Body,
 } from '@nestjs/common';
-import { toPromise } from 'src/shared/utils';
+import { toPromise } from '@shared/utils';
+import { ExampleCreateDto } from './dto/example.create.dto';
+import { ExampleListDto } from './dto/example.list.dto';
 import { ExampleDto } from './dto/example.dto';
-import { ExampleCreateDto } from './dto/example_create.dto';
-import { ExampleListDto } from './dto/example_list.dto';
 import { ExampleService } from './example.service';
 
 @Controller('api/examples')

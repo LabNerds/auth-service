@@ -2,12 +2,12 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 
 import { records } from 'src/mock/example.mock';
-import { toPromise } from 'src/shared/utils';
+import { toPromise } from '@shared/utils';
 import { ExampleDto } from './dto/example.dto';
-import { ExampleCreateDto } from './dto/example_create.dto';
-import { ExampleEntity } from './example.entity';
-import { toExampleDto } from './mapper';
-import { ExampleListDto } from './dto/example_list.dto';
+import { ExampleEntity } from './entity/example.entity';
+import { toExampleDto } from './example.mapper';
+import { ExampleListDto } from './dto/example.list.dto';
+import { ExampleCreateDto } from './dto/example.create.dto';
 
 @Injectable()
 export class ExampleService {
