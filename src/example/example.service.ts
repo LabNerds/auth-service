@@ -1,67 +1,69 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { randomUUID } from 'crypto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 
-import { records } from 'src/mock/example.mock';
 import { toPromise } from '@shared/utils';
 import { ExampleDto } from './dto/example.dto';
 import { ExampleEntity } from './entity/example.entity';
 import { toExampleDto } from './example.mapper';
 import { ExampleListDto } from './dto/example.list.dto';
 import { ExampleCreateDto } from './dto/example.create.dto';
+import { ExampleUpdateDto } from './dto/example.update.dto';
 
 @Injectable()
 export class ExampleService {
-  records: ExampleEntity[] = records;
+  constructor(
+    @InjectRepository(ExampleEntity)
+    private readonly exampleRepo: Repository<ExampleEntity>,
+  ) {}
 
   async getOneExample(id: string): Promise<ExampleDto> {
-    const example = this.records.find((record) => record.id === id);
+    const example = await this.exampleRepo.findOne({
+      where: { id },
+    });
 
     if (!example) {
       throw new HttpException(
-        `Example item doesn't exist`,
+        `Todo list doesn't exist`,
         HttpStatus.BAD_REQUEST,
       );
     }
 
-    return toPromise(toExampleDto(example));
+    return toExampleDto(example);
   }
 
   async getAllExample(): Promise<ExampleListDto> {
-    const records = this.records.map((record) => toExampleDto(record));
+    const records = await this.exampleRepo.find();
 
-    return toPromise({ records });
-  }
-
-  async updateExample(id: string, updateData: ExampleDto): Promise<ExampleDto> {
-    const updateExample = this.records.find((record) => record.id === id);
-    this.records = this.records.map((record) => {
-      if (record.id === updateExample.id) {
-        return updateData;
-      }
-      return record;
+    return toPromise({
+      records: records.map((record) => toExampleDto(record)),
     });
-
-    return toPromise(toExampleDto(updateData));
   }
 
-  async destroyExample(id: string): Promise<ExampleDto> {
-    const destroyExample = this.records.find((record) => record.id === id);
-    this.records = this.records.filter(
-      (record) => record.id === destroyExample.id,
+  async updateExample(
+    id: string,
+    updateData: ExampleUpdateDto,
+  ): Promise<ExampleDto> {
+    const example = await this.exampleRepo.findOne({ where: { id } });
+
+    return toExampleDto(
+      await this.exampleRepo.save({ ...example, ...updateData }),
     );
-    return toPromise(toExampleDto(destroyExample));
+  }
+
+  async destroyExample(id: string): Promise<DeleteResult> {
+    return this.exampleRepo.delete({ id });
   }
 
   async createExample(exampleDto: ExampleCreateDto): Promise<ExampleDto> {
     const { name, description } = exampleDto;
 
-    const example: ExampleEntity = {
-      id: randomUUID(),
+    const example: ExampleEntity = this.exampleRepo.create({
       name,
       description,
-    };
+    });
 
-    this.records.push(example);
+    await this.exampleRepo.save(example);
     return toPromise(toExampleDto(example));
   }
 }

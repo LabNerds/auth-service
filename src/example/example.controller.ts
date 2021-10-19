@@ -6,12 +6,16 @@ import {
   Delete,
   Param,
   Body,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { toPromise } from '@shared/utils';
 import { ExampleCreateDto } from './dto/example.create.dto';
 import { ExampleListDto } from './dto/example.list.dto';
 import { ExampleDto } from './dto/example.dto';
 import { ExampleService } from './example.service';
+import { DeleteResult } from 'typeorm';
+import { ExampleUpdateDto } from './dto/example.update.dto';
 
 @Controller('api/examples')
 export class ExampleController {
@@ -29,20 +33,22 @@ export class ExampleController {
   }
 
   @Post()
+  @UsePipes(new ValidationPipe())
   async create(@Body() todoCreateDto: ExampleCreateDto): Promise<ExampleDto> {
     return await this.exampleService.createExample(todoCreateDto);
   }
 
   @Put(':id')
+  @UsePipes(new ValidationPipe())
   async update(
     @Param('id') id: string,
-    @Body() exampleDto: ExampleDto,
+    @Body() exampleDto: ExampleUpdateDto,
   ): Promise<ExampleDto> {
     return await this.exampleService.updateExample(id, exampleDto);
   }
 
   @Delete(':id')
-  async destory(@Param('id') id: string): Promise<ExampleDto> {
+  async destory(@Param('id') id: string): Promise<DeleteResult> {
     return await this.exampleService.destroyExample(id);
   }
 }
