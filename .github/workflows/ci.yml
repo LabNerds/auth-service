@@ -51,7 +51,7 @@ jobs:
             -Dsonar.projectKey=auth_microservices
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
             -Dsonar.inclusions=src/**/*.ts
-            -Dsonar.exclusions=src/**/*.spec.ts,src/*.ts
+            -Dsonar.exclusions=src/**/*.spec.ts,src/*.ts,src/migration/*.ts,src/shared/db/*.ts,src/mock/*.ts,src/**/*.module.ts,src/**/*.dto.ts
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
