@@ -29,13 +29,13 @@ export class ExampleController {
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<ExampleDto> {
-    return await this.exampleService.getOneExample(id);
+    return this.exampleService.getOneExample(id);
   }
 
   @Post()
   @UsePipes(new ValidationPipe())
   async create(@Body() todoCreateDto: ExampleCreateDto): Promise<ExampleDto> {
-    return await this.exampleService.createExample(todoCreateDto);
+    return this.exampleService.createExample(todoCreateDto);
   }
 
   @Put(':id')
@@ -44,11 +44,11 @@ export class ExampleController {
     @Param('id') id: string,
     @Body() exampleDto: ExampleUpdateDto,
   ): Promise<ExampleDto> {
-    return await this.exampleService.updateExample(id, exampleDto);
+    return this.exampleService.updateExample(id, exampleDto);
   }
 
   @Delete(':id')
   async destory(@Param('id') id: string): Promise<DeleteResult> {
-    return await this.exampleService.destroyExample(id);
+    return this.exampleService.destroyExample(id);
   }
 }

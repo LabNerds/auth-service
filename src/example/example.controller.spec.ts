@@ -21,8 +21,8 @@ describe('CatsController', () => {
         records: [
           {
             id: '1',
-            name: 'name',
-            description: 'description',
+            name: 'name test',
+            description: 'description test',
           },
         ],
       };
