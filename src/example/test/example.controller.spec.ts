@@ -1,9 +1,9 @@
 import { toPromise } from '@shared/utils';
 import { Repository } from 'typeorm';
-import { ExampleListDto } from './dto/example.list.dto';
-import { ExampleEntity } from './entity/example.entity';
-import { ExampleController } from './example.controller';
-import { ExampleService } from './example.service';
+import { ExampleListDto } from '../dto/example.list.dto';
+import { ExampleEntity } from '../entity/example.entity';
+import { ExampleController } from '../example.controller';
+import { ExampleService } from '../example.service';
 
 describe('CatsController', () => {
   let exampleController: ExampleController;

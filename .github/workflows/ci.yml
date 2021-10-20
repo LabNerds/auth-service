@@ -12,7 +12,10 @@ on:
 jobs:
   build-test:
     runs-on: ubuntu-latest
-
+    env:
+      DB_TEST_USER: postgres
+      DB_TEST_PASS: postgres
+      DB_TEST_NAME: auth_service_test
     steps:
       - uses: actions/checkout@v2
       - run: git fetch --unshallow
@@ -24,6 +27,8 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run build --if-present
+      - run: docker-compose up -d
+      - run: npm run test:e2e
       - run: npm run test:cov
         env:
           CI: true
