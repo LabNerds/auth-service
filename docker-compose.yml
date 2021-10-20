@@ -1,0 +1,10 @@
+version: '3'
+services:
+  auth-postgres:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=${DB_TEST_USER}
+      - POSTGRES_PASSWORD=${DB_TEST_PASS}
+      - POSTGRES_DB=${DB_TEST_NAME}

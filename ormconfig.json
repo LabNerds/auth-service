@@ -13,16 +13,14 @@
     "port": 5432,
     "username": "postgres",
     "password": "xxxx",
-    "database": "auth_service",
+    "database": "auth_service_development",
     "synchronize": false,
     "logging": true,
     "entities": ["src/**/*.entity.ts"],
-    "migrations": ["src/migration/**/*.ts"],
-    "subscribers": ["src/subscriber/**/*.ts"],
+    "migrations": ["src/migration/*.ts"],
     "cli": {
       "entitiesDir": "src/**/*.entity.ts",
-      "migrationsDir": "src/migration",
-      "subscribersDir": "src/subscriber"
+      "migrationsDir": "src/migration"
     }
   },
   {
@@ -36,12 +34,10 @@
     "synchronize": false,
     "logging": true,
     "entities": ["src/**/*.entity.ts"],
-    "migrations": ["src/migration/**/*.ts"],
-    "subscribers": ["src/subscriber/**/*.ts"],
+    "migrations": ["src/migration/*.ts"],
     "cli": {
       "entitiesDir": "src/**/*.entity.ts",
-      "migrationsDir": "src/migration",
-      "subscribersDir": "src/subscriber"
+      "migrationsDir": "src/migration"
     }
   }
 ]
