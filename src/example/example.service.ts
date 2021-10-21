@@ -23,10 +23,7 @@ export class ExampleService {
     });
 
     if (!example) {
-      throw new HttpException(
-        `Todo list doesn't exist`,
-        HttpStatus.BAD_REQUEST,
-      );
+      throw new HttpException(`Example doesn't exist`, HttpStatus.BAD_REQUEST);
     }
 
     return toExampleDto(example);
@@ -64,6 +61,6 @@ export class ExampleService {
     });
 
     await this.exampleRepo.save(example);
-    return toPromise(toExampleDto(example));
+    return toExampleDto(example);
   }
 }
