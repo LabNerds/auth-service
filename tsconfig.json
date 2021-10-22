@@ -13,6 +13,7 @@
     "paths": {
       "@example/*": ["src/example/*"],
       "@shared/*": ["src/shared/*"],
+      "@src/*": ["src/*"]
     }
   },
   "exclude": ["node_modules"]
