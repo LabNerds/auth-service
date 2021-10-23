@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 import { getConnectionOptions, getConnection } from 'typeorm';
 
 export const getDbConnectionOptions = async (connectionName = 'default') => {
@@ -7,6 +9,10 @@ export const getDbConnectionOptions = async (connectionName = 'default') => {
   return {
     ...options,
     name: connectionName,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
   };
 };
 

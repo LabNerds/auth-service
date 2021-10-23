@@ -2,6 +2,7 @@
   {
     "name": "production",
     "type": "postgres",
+    "database": "auth_service_production",
     "synchronize": false,
     "dropSchema": false,
     "logging": true,
@@ -15,10 +16,6 @@
   {
     "name": "development",
     "type": "postgres",
-    "host": "localhost",
-    "port": 5432,
-    "username": "postgres",
-    "password": "xxxx",
     "database": "auth_service_development",
     "synchronize": false,
     "logging": true,
@@ -32,10 +29,6 @@
   {
     "name": "default",
     "type": "postgres",
-    "host": "localhost",
-    "port": 5432,
-    "username": "postgres",
-    "password": "xxxx",
     "database": "auth_service_development",
     "synchronize": false,
     "logging": true,
