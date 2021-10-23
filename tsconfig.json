@@ -11,8 +11,7 @@
     "sourceMap": true,
     "lib": ["es2015"],
     "paths": {
-      "@example/*": ["src/example/*"],
-      "@shared/*": ["src/shared/*"]
+      "@root/*": ["src/*"]
     }
   },
   "exclude": ["node_modules"]

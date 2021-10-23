@@ -1,4 +1,4 @@
-import { Example } from '@example/entity/example.entity';
+import { Example } from '@root/entity/example.entity';
 import { randomUUID } from 'crypto';
 import * as Faker from 'faker';
 import { define } from 'typeorm-factories';

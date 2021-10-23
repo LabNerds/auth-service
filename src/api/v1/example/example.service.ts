@@ -2,9 +2,9 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 
-import { toPromise } from '@shared/utils';
+import { toPromise } from '@root/shared/utils';
 import { ExampleDto } from './dto/example.dto';
-import { Example } from './entity/example.entity';
+import { Example } from '@root/entity/example.entity';
 import { toExampleDto } from './example.mapper';
 import { ExampleListDto } from './dto/example.list.dto';
 import { ExampleCreateDto } from './dto/example.create.dto';
