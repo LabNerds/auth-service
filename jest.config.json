@@ -8,7 +8,6 @@
   },
   "moduleNameMapper": {
     "shared/(.*)": "<rootDir>/src/shared/$1",
-    "example/(.*)": "<rootDir>/src/example/$1",
-    "src/(.*)": "<rootDir>/src/$1"
+    "example/(.*)": "<rootDir>/src/example/$1"
   }
 }

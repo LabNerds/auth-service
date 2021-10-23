@@ -2,21 +2,21 @@ import { HttpException } from '@nestjs/common';
 import { toPromise } from '@shared/utils';
 import { toExampleDto } from 'dist/example/example.mapper';
 import { Repository } from 'typeorm';
-import { ExampleEntity } from '../entity/example.entity';
+import { Example } from '../entity/example.entity';
 import { ExampleService } from '../example.service';
 
 describe('CatsController', () => {
   let exampleService: ExampleService;
 
   describe('getOneExample', () => {
-    const result: ExampleEntity = {
+    const result: Example = {
       id: '1',
       name: 'name test',
       description: 'description test',
     };
 
     beforeAll(() => {
-      const exampleRepo: Repository<ExampleEntity> = new Repository();
+      const exampleRepo: Repository<Example> = new Repository();
 
       jest.spyOn(exampleRepo, 'findOne').mockImplementation((params: any) => {
         if (params?.where?.id === result.id) return toPromise(result);
@@ -39,7 +39,7 @@ describe('CatsController', () => {
   });
 
   describe('getAllExample', () => {
-    const result: ExampleEntity[] = [
+    const result: Example[] = [
       {
         id: '1',
         name: 'name test',
@@ -48,7 +48,7 @@ describe('CatsController', () => {
     ];
 
     beforeAll(() => {
-      const exampleRepo: Repository<ExampleEntity> = new Repository();
+      const exampleRepo: Repository<Example> = new Repository();
 
       jest
         .spyOn(exampleRepo, 'find')
@@ -63,7 +63,7 @@ describe('CatsController', () => {
   });
 
   describe('updateExample', () => {
-    const result: ExampleEntity = {
+    const result: Example = {
       id: '1',
       name: 'name test',
       description: 'description test',
@@ -74,7 +74,7 @@ describe('CatsController', () => {
     };
 
     beforeAll(() => {
-      const exampleRepo: Repository<ExampleEntity> = new Repository();
+      const exampleRepo: Repository<Example> = new Repository();
 
       jest.spyOn(exampleRepo, 'findOne').mockImplementation((params: any) => {
         if (params?.where?.id === result.id) return toPromise(result);
@@ -97,7 +97,7 @@ describe('CatsController', () => {
 
   describe('deleteExample', () => {
     beforeAll(() => {
-      const exampleRepo: Repository<ExampleEntity> = new Repository();
+      const exampleRepo: Repository<Example> = new Repository();
 
       jest.spyOn(exampleRepo, 'delete').mockImplementation((params: any) => {
         if (params?.id === '1') return toPromise({ success: true } as any);
@@ -114,14 +114,14 @@ describe('CatsController', () => {
   });
 
   describe('createExample', () => {
-    const createData: ExampleEntity = {
+    const createData: Example = {
       id: '1',
       name: 'test',
       description: 'test',
     };
 
     beforeAll(() => {
-      const exampleRepo: Repository<ExampleEntity> = new Repository();
+      const exampleRepo: Repository<Example> = new Repository();
 
       jest
         .spyOn(exampleRepo, 'create')

@@ -2,7 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 
-import { clearDb, closeDbConnection } from '@shared/db/connection';
 import { AppTestModule } from './../src/app.module';
 
 describe('AppController (e2e)', () => {
@@ -18,11 +17,7 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  afterAll(async () => {
-    await clearDb();
-    await closeDbConnection();
-    await app.close();
-  });
+  afterAll(() => app.close());
 
   it('/ (GET)', () => {
     return request(app.getHttpServer())

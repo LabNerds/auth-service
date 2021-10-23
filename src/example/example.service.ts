@@ -4,7 +4,7 @@ import { DeleteResult, Repository } from 'typeorm';
 
 import { toPromise } from '@shared/utils';
 import { ExampleDto } from './dto/example.dto';
-import { ExampleEntity } from './entity/example.entity';
+import { Example } from './entity/example.entity';
 import { toExampleDto } from './example.mapper';
 import { ExampleListDto } from './dto/example.list.dto';
 import { ExampleCreateDto } from './dto/example.create.dto';
@@ -13,17 +13,15 @@ import { ExampleUpdateDto } from './dto/example.update.dto';
 @Injectable()
 export class ExampleService {
   constructor(
-    @InjectRepository(ExampleEntity)
-    private readonly exampleRepo: Repository<ExampleEntity>,
+    @InjectRepository(Example)
+    private readonly exampleRepo: Repository<Example>,
   ) {}
 
   async getOneExample(id: string): Promise<ExampleDto> {
-    const example = await this.exampleRepo.findOne({
-      where: { id },
-    });
+    const example = await this.exampleRepo.findOne({ where: { id } });
 
     if (!example) {
-      throw new HttpException(`Example doesn't exist`, HttpStatus.BAD_REQUEST);
+      throw new HttpException(`Example doesn't exist`, HttpStatus.NOT_FOUND);
     }
 
     return toExampleDto(example);
@@ -43,6 +41,10 @@ export class ExampleService {
   ): Promise<ExampleDto> {
     const example = await this.exampleRepo.findOne({ where: { id } });
 
+    if (!example) {
+      throw new HttpException(`Example doesn't exist`, HttpStatus.NOT_FOUND);
+    }
+
     return toExampleDto(
       await this.exampleRepo.save({ ...example, ...updateData }),
     );
@@ -55,7 +57,7 @@ export class ExampleService {
   async createExample(exampleDto: ExampleCreateDto): Promise<ExampleDto> {
     const { name, description } = exampleDto;
 
-    const example: ExampleEntity = this.exampleRepo.create({
+    const example: Example = this.exampleRepo.create({
       name,
       description,
     });

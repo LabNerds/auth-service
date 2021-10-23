@@ -8,13 +8,7 @@ const port = process.env.PORT;
 
 async function bootstrap() {
   const app = await NestFactory.create(
-    AppModule.forRoot(
-      await getDbConnectionOptions(process.env.NODE_ENV, {
-        username: process.env.DB_DEV_USER,
-        password: process.env.DB_DEV_PASS,
-        database: process.env.DB_DEV_NAME,
-      }),
-    ),
+    AppModule.forRoot(await getDbConnectionOptions(process.env.NODE_ENV)),
   );
 
   await runDbMigrations();

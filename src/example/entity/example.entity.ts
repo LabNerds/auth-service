@@ -6,10 +6,10 @@ import {
 } from 'typeorm';
 
 @Entity('example')
-export class ExampleEntity {
+export class Example {
   @PrimaryGeneratedColumn('uuid') id: string;
   @Column({ type: 'varchar', nullable: false }) name: string;
-  @Column({ type: 'text', nullable: true }) description?: string;
+  @Column({ type: 'text', nullable: false }) description?: string;
   @CreateDateColumn() createdOn?: Date;
   @CreateDateColumn() updatedOn?: Date;
 }

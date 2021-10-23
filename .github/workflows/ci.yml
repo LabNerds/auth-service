@@ -12,10 +12,6 @@ on:
 jobs:
   build-test:
     runs-on: ubuntu-latest
-    env:
-      DB_TEST_USER: postgres
-      DB_TEST_PASS: postgres
-      DB_TEST_NAME: auth_service_test
     steps:
       - uses: actions/checkout@v2
       - run: git fetch --unshallow
@@ -27,7 +23,6 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run build --if-present
-      - run: docker-compose up -d
       - run: npm run test:cov
         env:
           CI: true
@@ -55,7 +50,7 @@ jobs:
             -Dsonar.projectKey=auth_microservices
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
             -Dsonar.inclusions=src/**/*.ts
-            -Dsonar.exclusions=src/**/*.spec.ts,src/*.ts,src/migration/*.ts,src/shared/db/*.ts,src/mock/*.ts,src/**/*.module.ts
+            -Dsonar.exclusions=src/**/test/**.ts,src/*.ts,src/migration/*.ts,src/shared/db/*.ts
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
