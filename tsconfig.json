@@ -12,7 +12,7 @@
     "lib": ["es2015"],
     "paths": {
       "@example/*": ["src/example/*"],
-      "@shared/*": ["src/shared/*"],
+      "@shared/*": ["src/shared/*"]
     }
   },
   "exclude": ["node_modules"]

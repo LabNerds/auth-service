@@ -17,7 +17,7 @@ import { ExampleService } from './example.service';
 import { DeleteResult } from 'typeorm';
 import { ExampleUpdateDto } from './dto/example.update.dto';
 
-@Controller('api/examples')
+@Controller('api/v1/examples')
 export class ExampleController {
   constructor(private readonly exampleService: ExampleService) {}
 
