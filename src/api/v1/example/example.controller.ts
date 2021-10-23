@@ -9,7 +9,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { toPromise } from '@shared/utils';
+import { toPromise } from '@root/shared/utils';
 import { ExampleCreateDto } from './dto/example.create.dto';
 import { ExampleListDto } from './dto/example.list.dto';
 import { ExampleDto } from './dto/example.dto';
@@ -17,7 +17,7 @@ import { ExampleService } from './example.service';
 import { DeleteResult } from 'typeorm';
 import { ExampleUpdateDto } from './dto/example.update.dto';
 
-@Controller('api/v1/examples')
+@Controller()
 export class ExampleController {
   constructor(private readonly exampleService: ExampleService) {}
 

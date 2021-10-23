@@ -5,10 +5,10 @@
     "synchronize": false,
     "dropSchema": false,
     "logging": true,
-    "entities": ["src/**/*.entity.ts"],
+    "entities": ["src/entity/*.entity.ts"],
     "migrations": ["src/migration/*.ts"],
     "cli": {
-      "entitiesDir": "src/**/*.entity.ts",
+      "entities": "src/entity/*.entity.ts",
       "migrationsDir": "src/migration"
     }
   },
@@ -22,24 +22,28 @@
     "database": "auth_service_development",
     "synchronize": false,
     "logging": true,
-    "entities": ["src/**/*.entity.ts"],
+    "entities": ["src/entity/*.entity.ts"],
     "migrations": ["src/migration/*.ts"],
     "cli": {
-      "entitiesDir": "src/**/*.entity.ts",
+      "entities": "src/entity/*.entity.ts",
       "migrationsDir": "src/migration"
     }
   },
   {
     "name": "default",
-    "type": "sqlite",
-    "database": ":memory:",
-    "entities": ["src/**/*.entity.ts"],
-    "migrations": ["src/migrations/*.ts"],
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "xxxx",
+    "database": "auth_service_development",
+    "synchronize": false,
+    "logging": true,
+    "entities": ["src/entity/*.entity.ts"],
+    "migrations": ["src/migration/*.ts"],
     "cli": {
-      "entitiesDir": "src/**/*.entity.ts",
+      "entities": "src/entity/*.entity.ts",
       "migrationsDir": "src/migration"
-    },
-    "dropSchema": true,
-    "synchronize": true
+    }
   }
 ]

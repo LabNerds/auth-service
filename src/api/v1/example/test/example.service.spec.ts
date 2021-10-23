@@ -1,8 +1,8 @@
 import { HttpException } from '@nestjs/common';
-import { toPromise } from '@shared/utils';
-import { toExampleDto } from 'dist/example/example.mapper';
+import { toPromise } from '@root/shared/utils';
+import { toExampleDto } from '@root/api/v1/example/example.mapper';
 import { Repository } from 'typeorm';
-import { Example } from '../entity/example.entity';
+import { Example } from '@root/entity/example.entity';
 import { ExampleService } from '../example.service';
 
 describe('CatsController', () => {

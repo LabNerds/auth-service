@@ -3,12 +3,12 @@ import { HttpStatus, INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { factory } from 'typeorm-factories';
 
-import { AppTestModule } from '../../app.module';
-import { Example } from '@example/entity/example.entity';
+import { AppTestModule } from '@root/app.module';
+import { Example } from '@root/entity/example.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { MockType } from '@shared/utils';
-import { toExampleDto } from '@example/example.mapper';
+import { MockType } from '@root/shared/utils';
+import { toExampleDto } from '@root/api/v1/example/example.mapper';
 
 describe('ExampleController (e2e)', () => {
   let app: INestApplication;
